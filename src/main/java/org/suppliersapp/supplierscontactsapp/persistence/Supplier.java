@@ -1,25 +1,26 @@
-package org.suppliersapp.supplierscontactsapp.entity;
+package org.suppliersapp.supplierscontactsapp.persistence;
 
 // table - supplier
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "supplier")
 public class Supplier {
-    private int Id;
+
+    @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
     private String name;
     private String email;
 
-    public Supplier(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
+    protected Supplier(){};
 
-    public int getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         Id = id;
     }
 
