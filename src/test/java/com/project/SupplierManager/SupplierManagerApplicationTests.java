@@ -1,10 +1,10 @@
-package org.suppliersapp.supplierscontactsapp;
+package com.project.SupplierManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AppTests {
+class SupplierManagerApplicationTests {
 
 	@Test
 	void contextLoads() {
