@@ -37,7 +37,7 @@ public class SupplierController {
     public String addSupplier(Supplier supplier, RedirectAttributes ra) {
         System.out.println(supplier);
         service.saveSupplier(supplier);
-        ra.addFlashAttribute("Saved successfully");
+        ra.addFlashAttribute("message","Saved successfully");
         return "redirect:/suppliers";
     }
 
@@ -46,7 +46,7 @@ public class SupplierController {
         Supplier supplier = service.getSupplierById(id);
         model.addAttribute(supplier);
         model.addAttribute("pageTitle", "Edit supplier (Id: " + id + ")");
-
+        ra.addFlashAttribute("message","updated successfully");
         return "supplier_form";
     }
 

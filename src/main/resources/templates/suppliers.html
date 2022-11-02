@@ -14,8 +14,8 @@
 
 
 
-  <div th:if="${message}" class="alert alert-success text center">
-    [[${message}]]
+  <div th:if="${message}" class="alert alert-success text center" role="alert" >
+    <span th:text="${message}"></span>
   </div>
 
   <div>
@@ -25,7 +25,8 @@
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
-          <th></th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
 
 
@@ -36,6 +37,8 @@
           <td th:text="${supplier.email}"></td>
           <td>
             <a class="btn btn-success" th:href="@{'/supplier/edit/' + ${supplier.id}}">Edit</a>
+          </td>
+          <td>
             <a class="btn btn-danger" th:href="@{'/supplier/delete/' + ${supplier.id}}">Delete</a>
           </td>
         </tr>

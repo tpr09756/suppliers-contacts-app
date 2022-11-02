@@ -43,8 +43,6 @@ public class Supplier {
     @Override
     public String toString() {
 
-        // printing recipients with lazy loading
-        // and no session will cause issues
         return "Supplier{" +
                 "Name='" + name + '\'' +
                 ", email='" + email + '\'' +

@@ -25,10 +25,10 @@ public class SupplierRepositoryTest {
         //supplier.setId(1);
         supplier.setName("tiago");
         supplier.setEmail("jggfg@gmail.com");
-        supplier.setEnabled(true);
+
 
         Supplier saveSupplier = repo.save(supplier);
-        System.out.println(supplier.getId());
+        //System.out.println(supplier.getId());
         Assertions.assertThat(saveSupplier).isNotNull();
         Assertions.assertThat(saveSupplier.getId()).isGreaterThan(0);
     }
