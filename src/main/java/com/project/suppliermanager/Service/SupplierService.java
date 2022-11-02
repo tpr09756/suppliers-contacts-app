@@ -30,10 +30,6 @@ public class SupplierService {
             return repository.findById(id).orElse(null);
         }
 
-        public Supplier getSupplierByName(String name) {
-            return repository.findByName(name);
-        }
-
         public String deleteSupplier(int id) {
             repository.deleteById(id);
             return "supplier removed !! " + id;

@@ -14,7 +14,26 @@ public class Supplier {
     private String name;
     @Column(name = "email", nullable = false, length = 100)
     private String email;
+    @Column(name="phone")
+    private String phone;
+    @Column(name="site")
+    private String site;
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
 
     public Integer getId() {
         return id;

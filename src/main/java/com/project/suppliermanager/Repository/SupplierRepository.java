@@ -6,8 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SupplierRepository extends CrudRepository<Supplier,Integer> {
-    Supplier findByName(String name);
-
-
 
 }
