@@ -16,44 +16,43 @@ public class SupplierController {
     @Autowired
     private SupplierService service;
 
-    @PostMapping("/supplier/save")
-    public String addSupplier(Supplier supplier, RedirectAttributes ra) {
-        service.saveSupplier(supplier);
-        ra.addFlashAttribute("Saved successfully");
-        return "redirect:/suppliers";
-    }
-
-    @GetMapping("/supplier/new/")
-    public String newSupplierForm(Model model){
-        model.addAttribute("supplier", new Supplier());
-        return "supplier_form";
-    }
 
     @GetMapping("/suppliers")
     public String showAllSuppliers(Model model) {
 
         List<Supplier> listSupplier = service.getSuppliers();
         model.addAttribute("listSupplier", listSupplier);
-        return "/suppliers";
+        System.out.println(listSupplier);
+        return "suppliers";
     }
 
-    @GetMapping("/suppliersById/{id}")
-    public Supplier findSupplierById(@PathVariable int id) {
-        return service.getSupplierById(id);
+    @GetMapping("/supplier/new/")
+    public String newSupplierForm(Model model){
+        model.addAttribute("supplier", new Supplier());
+        model.addAttribute("pageTitle", "Add new supplier");
+        return "supplier_form";
     }
 
-    @GetMapping("/supplier/{name}")
-    public Supplier findProductByName(@PathVariable String name) {
-        return service.getSupplierByName(name);
+    @PostMapping("/supplier/save")
+    public String addSupplier(Supplier supplier, RedirectAttributes ra) {
+        System.out.println(supplier);
+        service.saveSupplier(supplier);
+        ra.addFlashAttribute("Saved successfully");
+        return "redirect:/suppliers";
     }
 
-    @PutMapping("/update")
-    public Supplier updateSupplier(@RequestBody Supplier supplier) {
-        return service.updateSupplier(supplier);
+    @GetMapping("/supplier/edit/{id}")
+    public String editFormSupplier(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+        Supplier supplier = service.getSupplierById(id);
+        model.addAttribute(supplier);
+        model.addAttribute("pageTitle", "Edit supplier (Id: " + id + ")");
+
+        return "supplier_form";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteSupplier(@PathVariable int id) {
-        return service.deleteSupplier(id);
+    @GetMapping("/supplier/delete/{id}")
+    public String deleteSupplier(@PathVariable("id") Integer id, RedirectAttributes ra) {
+        service.deleteSupplier(id);
+        return "redirect:/suppliers";
     }
 }

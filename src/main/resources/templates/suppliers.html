@@ -9,38 +9,43 @@
 </head>
 <body>
 
-<div class="container-fluid text-center">
-  <h1>Manage Suppliers</h1>
-  <div>
-    <a th:href="@{/supplier/new/}">Add new Supplier</a>
-  </div>
+<div class="container">
+  <h2>Suppliers List</h2>
+
+
+
   <div th:if="${message}" class="alert alert-success text center">
     [[${message}]]
   </div>
+
   <div>
-    <table class="table table-bordered">
-      <thead class="thead-dark">
+    <table class="table table-striped">
+
         <tr>
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
           <th></th>
         </tr>
-      </thead>
-      <tbody>
-      <th:block th:each="supplier : ${lisSupplier}">
-        <tr>
-          <td>[[${supplier.id}]]</td>
-          <td>[[${supplier.name}]]</td>
-          <td>[[${supplier.email}]]</td>
+
+
+
+        <tr th:each="supplier : ${listSupplier}">
+          <td th:text="${supplier.id}"></td>
+          <td th:text="${supplier.name}"></td>
+          <td th:text="${supplier.email}"></td>
           <td>
-            <a th:href="@{'/supplier/edit/' + &{supplier.id}}">Edit</a>
-            <a href="@{'/supplier/delete/' + &{supplier.id}}">Delete</a>
+            <a class="btn btn-success" th:href="@{'/supplier/edit/' + ${supplier.id}}">Edit</a>
+            <a class="btn btn-danger" th:href="@{'/supplier/delete/' + ${supplier.id}}">Delete</a>
           </td>
         </tr>
-      </th:block>
-      </tbody>
+
+
     </table>
+  </div>
+
+  <div class="col-sm-3">
+    <a class="btn btn-primary" th:href="@{/supplier/new/}">Add new Supplier</a>
   </div>
 </div>
 

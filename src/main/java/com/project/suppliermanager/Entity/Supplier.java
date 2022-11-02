@@ -1,10 +1,7 @@
 package com.project.suppliermanager.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SUPPLIER_TBL")
@@ -12,24 +9,18 @@ public class Supplier {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
-    private boolean enabled;
 
-    public boolean isEnabled() {
-        return enabled;
-    }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,4 +39,20 @@ public class Supplier {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+
+        // printing recipients with lazy loading
+        // and no session will cause issues
+        return "Supplier{" +
+                "Name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                "} " + super.toString();
+    }
+
+
 }
+
+
+

@@ -3,10 +3,13 @@ package com.project.suppliermanager.Service;
 import com.project.suppliermanager.Entity.Supplier;
 import com.project.suppliermanager.Repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
+@Component
 public class SupplierService {
 
 
@@ -20,7 +23,7 @@ public class SupplierService {
         }
 
         public List<Supplier> getSuppliers() {
-            return repository.findAll();
+            return (List<Supplier>) repository.findAll();
         }
 
         public Supplier getSupplierById(int id) {
