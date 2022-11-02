@@ -2,6 +2,7 @@ package com.project.suppliermanager.Controller;
 
 import com.project.suppliermanager.Entity.Supplier;
 import com.project.suppliermanager.Service.SupplierService;
+import com.project.suppliermanager.Service.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +36,16 @@ public class SupplierController {
 
     @GetMapping("/supplier/edit/{id}")
     public String editFormSupplier(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
-        Supplier supplier = service.getSupplierById(id);
-        model.addAttribute(supplier);
-        model.addAttribute("pageTitle", "Edit supplier (Id: " + id + ")");
-        ra.addFlashAttribute("message","updated successfully");
-        return "supplier_form";
+
+        try {
+            Supplier supplier = service.getSupplierById(id);
+            model.addAttribute("supplier", supplier);
+            model.addAttribute("pageTitle", "Edit supplier (Id: " + id + ")");
+            return "supplier_form";
+        } catch (UserNotFoundException e) {
+            ra.addFlashAttribute("message", "Saved successfully")  ;
+            return "redirect:/suppliers";
+        }
     }
 
     @GetMapping("/supplier/delete/{id}")

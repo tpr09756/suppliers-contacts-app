@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -26,8 +27,12 @@ public class SupplierService {
             return (List<Supplier>) repository.findAll();
         }
 
-        public Supplier getSupplierById(int id) {
-            return repository.findById(id).orElse(null);
+        public Supplier getSupplierById(int id) throws UserNotFoundException {
+            Optional<Supplier> result = repository.findById(id);
+            if (result.isPresent()) {
+                return result.get();
+            }
+            throw new UserNotFoundException("Could not found supplier with ID:" + id);
         }
 
         public String deleteSupplier(int id) {
